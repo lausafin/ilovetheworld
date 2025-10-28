@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1L0VETHEWORLD - Baobei Fan Page 💕</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+            color: #333;
+        }
+
+        /* Floating Hearts Animation */
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .heart {
+            position: fixed;
+            font-size: 2rem;
+            pointer-events: none;
+            animation: floatUp 6s ease-in infinite;
+        }
+
+        /* Sparkles Animation */
+        @keyframes sparkleAppear {
+            0% {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+            }
+            50% {
+                transform: scale(1.2) rotate(180deg);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0) rotate(360deg);
+            }
+        }
+
+        .sparkle {
+            position: fixed;
+            font-size: 1.5rem;
+            pointer-events: none;
+            animation: sparkleAppear 2s ease-out forwards;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            animation: fadeIn 1s ease-in;
+            z-index: 10;
+        }
+
+        .main-heading {
+            font-size: 3.5rem;
+            color: white;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            letter-spacing: 2px;
+        }
+
+        .sparkle-text {
+            display: inline-block;
+            animation: twinkle 1.5s ease-in-out infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        .tagline {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-style: italic;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* Cards */
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin: 30px 0;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            max-width: 800px;
+            width: 100%;
+            transition: all 0.3s ease;
+            animation: fadeIn 1s ease-in;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+        }
+
+.video-heading {
+            text-align: center;
+            font-size: 1.5rem;
+            color: #764ba2;
+            margin-bottom: 20px;
+        }
+
+/* Love Message Section */
+        .message-heading {
+            font-size: 2.2rem;
+            color: #764ba2;
+            text-align: center;
+            margin-bottom: 20px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .baobei-text {
+            font-size: 2.5rem;
+            color: #764ba2;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .message-content {
+            line-height: 1.8;
+            font-size: 1.1rem;
+            color: #555;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .lyrics {
+            background: linear-gradient(135deg, #f5f3ff 0%, #faf8ff 100%);
+            padding: 20px;
+            border-left: 4px solid #764ba2;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-style: italic;
+            color: #666;
+        }
+
+        .lyric-line {
+            margin: 15px 0;
+            line-height: 1.6;
+        }
+
+        .decorative-emojis {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-top: 30px;
+            letter-spacing: 10px;
+        }
+
+        /* Floating Music Note */
+        .floating-note {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            font-size: 2.5rem;
+            animation: bounce 1.5s ease-in-out infinite;
+            cursor: pointer;
+            z-index: 100;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 15px;
+            }
+
+            .main-heading {
+                font-size: 2.2rem;
+            }
+
+            .tagline {
+                font-size: 1rem;
+            }
+
+            .card {
+                padding: 25px;
+                margin: 20px 0;
+            }
+
+            .message-heading {
+                font-size: 1.5rem;
+            }
+
+            .baobei-text {
+                font-size: 1.8rem;
+            }
+
+            .message-content {
+                font-size: 0.95rem;
+            }
+
+            .floating-note {
+                bottom: 20px;
+                right: 20px;
+                font-size: 1.8rem;
+            }
+
+            .heart {
+                font-size: 1.2rem;
+            }
+
+            .sparkle {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-heading {
+                font-size: 1.8rem;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            .message-heading {
+                font-size: 1.2rem;
+            }
+
+            .baobei-text {
+                font-size: 1.4rem;
+            }
+
+            .message-content {
+                font-size: 0.9rem;
+            }
+
+            .decorative-emojis {
+                font-size: 1.4rem;
+                letter-spacing: 5px;
+            }
+
+            .lyrics {
+                padding: 15px;
+                font-size: 0.85rem;
+            }
+        }
+
+        /* Fallback text styling */
+        .fallback-text {
+            font-size: 1rem;
+            color: #666;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1 class="main-heading">
+            <span class="sparkle-text">✨</span> 1L0VETHEWORLD <span class="sparkle-text">✨</span>
+        </h1>
+        <p class="tagline">Spreading sweetness to make you love this world</p>
+    </header>
+
+    <!-- Audio Section -->
+    <div class="card" style="animation-delay: 0.2s;">
+        <h2 class="video-heading">🎵 Your Theme Song: 宝贝 (Bǎobèi) 🎵</h2>
+        
+        <audio controls style="width: 100%; margin: 20px 0; border-radius: 10px;">
+            <source src="./baobei.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        
+        <p class="fallback-text" style="margin-top: 20px; font-size: 0.95rem;">Click play to enjoy the song 💕</p>
+    </div>
+
+    <!-- Love Message Section -->
+    <div class="card" style="animation-delay: 0.4s;">
+        <h2 class="message-heading">A Song of Love & Comfort</h2>
+        
+        <div class="baobei-text">宝贝 (Bǎobèi)</div>
+        
+        <div class="message-content">
+            <p style="margin-bottom: 20px;">This is our anthem. A melody that promises sweetness in every moment, companionship when tired, and the reminder that you are beautiful.</p>
+            <p>From 1L0VETHEWORLD to you: This song carries the promise to make you love this world, to bring joy to your tomorrow, and to be there when you need someone.</p>
+        </div>
+
+        <div class="lyrics">
+            <div class="lyric-line">
+                "When you're tired, someone's with you" / 倦的时候有个人陪
+            </div>
+            <div class="lyric-line">
+                "Want you to know you're the most beautiful" / 要你知道你最美
+            </div>
+        </div>
+
+        <div class="decorative-emojis">
+            💕 🎮 🌍 🎵 💕
+        </div>
+    </div>
+
+    <!-- Floating Music Note -->
+    <div class="floating-note">🎵</div>
+
+    <script>
+        // Initial floating hearts with staggered delays
+        const heartEmojis = ['💕', '❤️', '💖', '💝', '💗'];
+        const initialDelays = [0, 1, 2, 3, 4, 5, 1.5, 2.5, 3.5];
+
+        function createHeart(delay) {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+            heart.style.left = Math.random() * window.innerWidth + 'px';
+            heart.style.animationDelay = delay + 's';
+            document.body.appendChild(heart);
+
+            // Remove heart after animation completes
+            setTimeout(() => heart.remove(), (6 + delay) * 1000);
+        }
+
+        // Create initial hearts
+        initialDelays.forEach(delay => createHeart(delay));
+
+        // Dynamically create hearts every 2 seconds
+        setInterval(() => {
+            createHeart(0);
+        }, 2000);
+
+        // Sparkles on mouse movement
+        document.addEventListener('mousemove', (e) => {
+            if (Math.random() > 0.7) { // 30% chance to create sparkle
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.textContent = '✨';
+                sparkle.style.left = e.clientX + 'px';
+                sparkle.style.top = e.clientY + 'px';
+                document.body.appendChild(sparkle);
+
+                // Remove sparkle after animation
+                setTimeout(() => sparkle.remove(), 2000);
+            }
+        });
+
+        // Add slight animation to floating music note on click
+        const floatingNote = document.querySelector('.floating-note');
+        floatingNote.addEventListener('click', () => {
+            floatingNote.style.animation = 'none';
+            setTimeout(() => {
+                floatingNote.style.animation = 'bounce 1.5s ease-in-out infinite';
+            }, 10);
+        });
+
+        // Ensure responsive behavior on resize
+        window.addEventListener('resize', () => {
+            // Handle any responsive adjustments if needed
+        });
+    </script>
+</body>
+</html>
