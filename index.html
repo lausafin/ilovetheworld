@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>1L0VETHEWORLD - Baobei Fan Page 💕</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -11,98 +12,122 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --primary: #FF6B9D;
+            --secondary: #C06C84;
+            --accent: #F67280;
+            --light: #FEE9F2;
+            --dark: #2C1A4A;
+        }
+
         body {
-            font-family: 'Georgia', serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background-size: 200% 200%;
+            animation: gradientShift 15s ease infinite;
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 40px 20px;
             color: #333;
         }
 
-        /* Floating Hearts Animation */
-        @keyframes floatUp {
-            0% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100vh) rotate(360deg);
-                opacity: 0;
-            }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
-        .heart {
+        /* Loading Screen */
+        .loading-screen {
             position: fixed;
-            font-size: 2rem;
-            pointer-events: none;
-            animation: floatUp 6s ease-in infinite;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
         }
 
-        /* Sparkles Animation */
-        @keyframes sparkleAppear {
-            0% {
-                opacity: 1;
-                transform: scale(1) rotate(0deg);
+        .loading-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader {
+            width: 80px;
+            height: 80px;
+            border: 4px solid rgba(255, 255, 255, 0.2);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            color: white;
+            font-size: 1.5rem;
+            margin-top: 20px;
+            font-weight: 300;
+        }
+
+        /* Particles Background */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: float 20s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+                opacity: 0.3;
             }
             50% {
-                transform: scale(1.2) rotate(180deg);
-            }
-            100% {
-                opacity: 0;
-                transform: scale(0) rotate(360deg);
+                transform: translate(100px, -100px) scale(1.5);
+                opacity: 0.6;
             }
         }
 
-        .sparkle {
-            position: fixed;
-            font-size: 1.5rem;
-            pointer-events: none;
-            animation: sparkleAppear 2s ease-out forwards;
-        }
-
-        /* Header */
-        header {
-            text-align: center;
-            margin-bottom: 60px;
-            animation: fadeIn 1s ease-in;
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
             z-index: 10;
         }
 
-        .main-heading {
-            font-size: 3.5rem;
-            color: white;
-            margin-bottom: 15px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-            letter-spacing: 2px;
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+            animation: fadeInUp 1s ease;
         }
 
-        .sparkle-text {
-            display: inline-block;
-            animation: twinkle 1.5s ease-in-out infinite;
-        }
-
-        @keyframes twinkle {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.6; }
-        }
-
-        .tagline {
-            font-size: 1.3rem;
-            color: rgba(255, 255, 255, 0.9);
-            font-style: italic;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Animations */
-        @keyframes fadeIn {
+        @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateY(30px);
             }
             to {
                 opacity: 1;
@@ -110,295 +135,589 @@
             }
         }
 
-        @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            color: white;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            letter-spacing: 3px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, white, transparent);
+            animation: shimmer 2s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .sparkle {
+            display: inline-block;
+            animation: twinkle 1.5s ease-in-out infinite;
+            font-size: 2rem;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { 
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
             }
-            50% {
-                transform: scale(1.05);
+            50% { 
+                opacity: 0.3;
+                transform: scale(1.2) rotate(180deg);
             }
         }
 
-        @keyframes bounce {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-20px);
-            }
+        .tagline {
+            font-size: 1.4rem;
+            color: rgba(255, 255, 255, 0.95);
+            font-weight: 300;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         }
 
-        /* Cards */
-        .card {
-            background: white;
+        /* Glassmorphism Cards */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 50px;
+            margin: 40px auto;
+            max-width: 900px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: fadeInUp 0.8s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .glass-card:hover::before {
+            opacity: 1;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Custom Audio Player */
+        .audio-section {
+            text-align: center;
+        }
+
+        .audio-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 30px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .custom-player {
+            background: rgba(255, 255, 255, 0.95);
             border-radius: 20px;
-            padding: 40px;
-            margin: 30px 0;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-            max-width: 800px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        audio {
             width: 100%;
-            transition: all 0.3s ease;
-            animation: fadeIn 1s ease-in;
+            outline: none;
         }
 
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+        audio::-webkit-media-controls-panel {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
 
-.video-heading {
+        /* Visualizer */
+        .visualizer {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            height: 100px;
+            gap: 4px;
+            margin: 20px 0;
+        }
+
+        .bar {
+            width: 8px;
+            background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+            border-radius: 4px;
+            animation: pulse 0.8s ease-in-out infinite;
+        }
+
+        .bar:nth-child(1) { animation-delay: 0s; height: 40px; }
+        .bar:nth-child(2) { animation-delay: 0.1s; height: 60px; }
+        .bar:nth-child(3) { animation-delay: 0.2s; height: 80px; }
+        .bar:nth-child(4) { animation-delay: 0.3s; height: 50px; }
+        .bar:nth-child(5) { animation-delay: 0.4s; height: 70px; }
+        .bar:nth-child(6) { animation-delay: 0.5s; height: 90px; }
+        .bar:nth-child(7) { animation-delay: 0.6s; height: 60px; }
+        .bar:nth-child(8) { animation-delay: 0.7s; height: 40px; }
+
+        @keyframes pulse {
+            0%, 100% { transform: scaleY(0.5); opacity: 0.5; }
+            50% { transform: scaleY(1); opacity: 1; }
+        }
+
+        /* Message Section */
+        .message-section {
             text-align: center;
-            font-size: 1.5rem;
-            color: #764ba2;
-            margin-bottom: 20px;
+            color: white;
         }
 
-/* Love Message Section */
-        .message-heading {
-            font-size: 2.2rem;
-            color: #764ba2;
-            text-align: center;
+        .message-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
             margin-bottom: 20px;
-            animation: pulse 2s ease-in-out infinite;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 20px rgba(255, 255, 255, 0.5); }
+            50% { text-shadow: 0 0 40px rgba(255, 255, 255, 0.8); }
         }
 
         .baobei-text {
-            font-size: 2.5rem;
-            color: #764ba2;
-            font-weight: bold;
-            text-align: center;
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #fff, #f093fb, #fff);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientText 3s ease infinite;
             margin-bottom: 30px;
+        }
+
+        @keyframes gradientText {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
         }
 
         .message-content {
+            font-size: 1.2rem;
             line-height: 1.8;
-            font-size: 1.1rem;
-            color: #555;
-            text-align: center;
+            color: rgba(255, 255, 255, 0.95);
+            font-weight: 300;
             margin-bottom: 30px;
         }
 
-        .lyrics {
-            background: linear-gradient(135deg, #f5f3ff 0%, #faf8ff 100%);
-            padding: 20px;
-            border-left: 4px solid #764ba2;
-            border-radius: 10px;
-            margin: 20px 0;
-            font-style: italic;
-            color: #666;
+        .message-content p {
+            margin-bottom: 20px;
+        }
+
+        /* Lyrics Container */
+        .lyrics-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 30px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .lyrics-container::before {
+            content: '♪';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 3rem;
+            opacity: 0.1;
+        }
+
+        .lyrics-container::after {
+            content: '♫';
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            font-size: 3rem;
+            opacity: 0.1;
         }
 
         .lyric-line {
-            margin: 15px 0;
-            line-height: 1.6;
+            font-size: 1.3rem;
+            color: #764ba2;
+            margin: 20px 0;
+            padding: 15px;
+            border-left: 4px solid #764ba2;
+            background: rgba(118, 75, 162, 0.05);
+            border-radius: 0 10px 10px 0;
+            font-style: italic;
+            transition: all 0.3s ease;
         }
 
-        .decorative-emojis {
-            text-align: center;
-            font-size: 1.8rem;
-            margin-top: 30px;
-            letter-spacing: 10px;
+        .lyric-line:hover {
+            transform: translateX(10px);
+            background: rgba(118, 75, 162, 0.1);
         }
 
-        /* Floating Music Note */
-        .floating-note {
+        /* Emoji Decoration */
+        .emoji-decoration {
+            font-size: 2.5rem;
+            letter-spacing: 20px;
+            margin: 40px 0;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Floating Action Buttons */
+        .fab {
             position: fixed;
             bottom: 30px;
             right: 30px;
-            font-size: 2.5rem;
-            animation: bounce 1.5s ease-in-out infinite;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
             cursor: pointer;
+            transition: all 0.3s ease;
+            animation: floatFab 3s ease-in-out infinite;
             z-index: 100;
         }
 
-        /* Mobile Responsiveness */
-        @media (max-width: 768px) {
-            body {
-                padding: 20px 15px;
-            }
+        @keyframes floatFab {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
 
-            .main-heading {
-                font-size: 2.2rem;
+        .fab:hover {
+            transform: scale(1.1) rotate(15deg);
+            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 100;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(180deg);
+        }
+
+        /* Dark Mode */
+        body.dark-mode {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+        }
+
+        body.dark-mode .glass-card {
+            background: rgba(0, 0, 0, 0.3);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
             }
 
             .tagline {
                 font-size: 1rem;
             }
 
-            .card {
-                padding: 25px;
-                margin: 20px 0;
-            }
-
-            .message-heading {
-                font-size: 1.5rem;
+            .glass-card {
+                padding: 30px 20px;
+                margin: 20px 10px;
             }
 
             .baobei-text {
+                font-size: 2rem;
+            }
+
+            .message-title {
                 font-size: 1.8rem;
             }
 
             .message-content {
-                font-size: 0.95rem;
-            }
-
-            .floating-note {
-                bottom: 20px;
-                right: 20px;
-                font-size: 1.8rem;
-            }
-
-            .heart {
-                font-size: 1.2rem;
-            }
-
-            .sparkle {
                 font-size: 1rem;
             }
-        }
 
-        @media (max-width: 480px) {
-            .main-heading {
-                font-size: 1.8rem;
+            .lyric-line {
+                font-size: 1rem;
             }
 
-            .card {
-                padding: 20px;
+            .fab {
+                width: 50px;
+                height: 50px;
+                bottom: 20px;
+                right: 20px;
             }
-
-            .message-heading {
-                font-size: 1.2rem;
-            }
-
-            .baobei-text {
-                font-size: 1.4rem;
-            }
-
-            .message-content {
-                font-size: 0.9rem;
-            }
-
-            .decorative-emojis {
-                font-size: 1.4rem;
-                letter-spacing: 5px;
-            }
-
-            .lyrics {
-                padding: 15px;
-                font-size: 0.85rem;
-            }
-        }
-
-        /* Fallback text styling */
-        .fallback-text {
-            font-size: 1rem;
-            color: #666;
-            text-align: center;
-            margin-bottom: 20px;
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <h1 class="main-heading">
-            <span class="sparkle-text">✨</span> 1L0VETHEWORLD <span class="sparkle-text">✨</span>
-        </h1>
-        <p class="tagline">Spreading sweetness to make you love this world</p>
-    </header>
-
-    <!-- Audio Section -->
-    <div class="card" style="animation-delay: 0.2s;">
-        <h2 class="video-heading">🎵 Your Theme Song: 宝贝 (Bǎobèi) 🎵</h2>
-        
-        <audio controls style="width: 100%; margin: 20px 0; border-radius: 10px;">
-            <source src="./baobei.mp3" type="audio/mpeg">
-            Your browser does not support the audio element.
-        </audio>
-        
-        <p class="fallback-text" style="margin-top: 20px; font-size: 0.95rem;">Click play to enjoy the song 💕</p>
+    <!-- Loading Screen -->
+    <div class="loading-screen">
+        <div class="loader"></div>
+        <div class="loading-text">Loading sweetness...</div>
     </div>
 
-    <!-- Love Message Section -->
-    <div class="card" style="animation-delay: 0.4s;">
-        <h2 class="message-heading">A Song of Love & Comfort</h2>
-        
-        <div class="baobei-text">宝贝 (Bǎobèi)</div>
-        
-        <div class="message-content">
-            <p style="margin-bottom: 20px;">This is our anthem. A melody that promises sweetness in every moment, companionship when tired, and the reminder that you are beautiful.</p>
-            <p>From 1L0VETHEWORLD to you: This song carries the promise to make you love this world, to bring joy to your tomorrow, and to be there when you need someone.</p>
+    <!-- Theme Toggle -->
+    <div class="theme-toggle" id="themeToggle">🌙</div>
+
+    <!-- Particles Background -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="hero">
+            <h1>
+                <span class="sparkle">✨</span>
+                1L0VETHEWORLD
+                <span class="sparkle">✨</span>
+            </h1>
+            <p class="tagline">Spreading sweetness to make you love this world</p>
         </div>
 
-        <div class="lyrics">
-            <div class="lyric-line">
-                "When you're tired, someone's with you" / 倦的时候有个人陪
-            </div>
-            <div class="lyric-line">
-                "Want you to know you're the most beautiful" / 要你知道你最美
+        <!-- Audio Section -->
+        <div class="glass-card">
+            <div class="audio-section">
+                <h2 class="audio-title">🎵 Your Theme Song: 宝贝 (Bǎobèi) 🎵</h2>
+                
+                <div class="visualizer">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+
+                <div class="custom-player">
+                    <audio controls id="audioPlayer">
+                        <source src="./baobei.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
             </div>
         </div>
 
-        <div class="decorative-emojis">
-            💕 🎮 🌍 🎵 💕
+        <!-- Message Section -->
+        <div class="glass-card">
+            <div class="message-section">
+                <h2 class="message-title">A Song of Love & Comfort</h2>
+                
+                <div class="baobei-text">宝贝 (Bǎobèi)</div>
+                
+                <div class="message-content">
+                    <p>This is our anthem. A melody that promises sweetness in every moment, companionship when tired, and the reminder that you are beautiful.</p>
+                    <p>From 1L0VETHEWORLD to you: This song carries the promise to make you love this world, to bring joy to your tomorrow, and to be there when you need someone.</p>
+                </div>
+
+                <div class="lyrics-container">
+                    <div class="lyric-line">
+                        When you're tired, someone's with you
+                    </div>
+                    <div class="lyric-line">
+                        Want you to know you're the most beautiful
+                    </div>
+                </div>
+
+                <div class="emoji-decoration">
+                    💕 🎮 🌍 🎵 💕
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- Floating Music Note -->
-    <div class="floating-note">🎵</div>
+    <!-- Floating Action Button -->
+    <div class="fab">🎵</div>
 
     <script>
-        // Initial floating hearts with staggered delays
-        const heartEmojis = ['💕', '❤️', '💖', '💝', '💗'];
-        const initialDelays = [0, 1, 2, 3, 4, 5, 1.5, 2.5, 3.5];
+        // Loading Screen
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.querySelector('.loading-screen').classList.add('hidden');
+            }, 1500);
+        });
 
-        function createHeart(delay) {
-            const heart = document.createElement('div');
-            heart.className = 'heart';
-            heart.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
-            heart.style.left = Math.random() * window.innerWidth + 'px';
-            heart.style.animationDelay = delay + 's';
-            document.body.appendChild(heart);
-
-            // Remove heart after animation completes
-            setTimeout(() => heart.remove(), (6 + delay) * 1000);
+        // Create Particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.width = Math.random() * 4 + 2 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 15) + 's';
+                particlesContainer.appendChild(particle);
+            }
         }
 
-        // Create initial hearts
-        initialDelays.forEach(delay => createHeart(delay));
+        createParticles();
 
-        // Dynamically create hearts every 2 seconds
-        setInterval(() => {
-            createHeart(0);
-        }, 2000);
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            themeToggle.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+        });
 
-        // Sparkles on mouse movement
+        // Enhanced Audio Visualization
+        const audio = document.getElementById('audioPlayer');
+        const bars = document.querySelectorAll('.bar');
+        
+        audio.addEventListener('play', () => {
+            bars.forEach(bar => {
+                bar.style.animationPlayState = 'running';
+            });
+        });
+
+        audio.addEventListener('pause', () => {
+            bars.forEach(bar => {
+                bar.style.animationPlayState = 'paused';
+            });
+        });
+
+        // Parallax Effect on Scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.glass-card');
+            parallaxElements.forEach((el, index) => {
+                const speed = 0.5 + (index * 0.1);
+                el.style.transform = `translateY(${scrolled * speed * 0.1}px)`;
+            });
+        });
+
+        // 3D Card Tilt Effect
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = (y - centerY) / 20;
+                const rotateY = (centerX - x) / 20;
+                
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px) scale(1.02)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0) scale(1)';
+            });
+        });
+
+        // Floating Hearts
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.textContent = ['💕', '❤️', '💖', '💝', '💗'][Math.floor(Math.random() * 5)];
+            heart.style.position = 'fixed';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.bottom = '-50px';
+            heart.style.fontSize = '2rem';
+            heart.style.pointerEvents = 'none';
+            heart.style.zIndex = '5';
+            heart.style.animation = 'floatUp 6s ease-in forwards';
+            document.body.appendChild(heart);
+            
+            setTimeout(() => heart.remove(), 6000);
+        }
+
+        const floatUpAnimation = document.createElement('style');
+        floatUpAnimation.textContent = `
+            @keyframes floatUp {
+                to {
+                    transform: translateY(-100vh) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(floatUpAnimation);
+
+        setInterval(createHeart, 2000);
+
+        // Sparkles on Mouse Move
         document.addEventListener('mousemove', (e) => {
-            if (Math.random() > 0.7) { // 30% chance to create sparkle
+            if (Math.random() > 0.8) {
                 const sparkle = document.createElement('div');
-                sparkle.className = 'sparkle';
                 sparkle.textContent = '✨';
+                sparkle.style.position = 'fixed';
                 sparkle.style.left = e.clientX + 'px';
                 sparkle.style.top = e.clientY + 'px';
+                sparkle.style.fontSize = '1.5rem';
+                sparkle.style.pointerEvents = 'none';
+                sparkle.style.zIndex = '5';
+                sparkle.style.animation = 'sparkleDisappear 1s forwards';
                 document.body.appendChild(sparkle);
-
-                // Remove sparkle after animation
-                setTimeout(() => sparkle.remove(), 2000);
+                
+                setTimeout(() => sparkle.remove(), 1000);
             }
         });
 
-        // Add slight animation to floating music note on click
-        const floatingNote = document.querySelector('.floating-note');
-        floatingNote.addEventListener('click', () => {
-            floatingNote.style.animation = 'none';
-            setTimeout(() => {
-                floatingNote.style.animation = 'bounce 1.5s ease-in-out infinite';
-            }, 10);
-        });
+        const sparkleAnimation = document.createElement('style');
+        sparkleAnimation.textContent = `
+            @keyframes sparkleDisappear {
+                to {
+                    transform: translateY(-30px) scale(0);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(sparkleAnimation);
 
-        // Ensure responsive behavior on resize
-        window.addEventListener('resize', () => {
-            // Handle any responsive adjustments if needed
+        // FAB Click Animation
+        document.querySelector('.fab').addEventListener('click', () => {
+            audio.paused ? audio.play() : audio.pause();
         });
     </script>
 </body>
